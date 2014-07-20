@@ -79,11 +79,12 @@ function addCheat(x)
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var value;
+	
 	if(document.getElementById("cheats").checked==true){
-		value = prompt("What tile do you need?");
+		value = document.getElementById("tile").value;
 		value = parseInt(value);
 		
-		if(parseInt(Math.log2(value)) == Math.log2(value))
+		if(parseInt(Math.log(value)/Math.log(2)) == Math.log(value)/Math.log(2))
 			this.score+=addCheat(value);
 		else
 		{
