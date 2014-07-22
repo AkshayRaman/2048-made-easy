@@ -21,14 +21,17 @@
 		  <div class="scores-container">
 			<div class="score-container">0</div>
 			<div class="best-container">0</div>
+			<div class="moves-container">0</div>
 		  </div>
 		</div>
 
 		<div class="above-game">
 		  <a class="restart-button">Restart</a>
-		  <div id="enable-cheats">Enable cheats: <input type="checkbox" id="cheats" style="width:10%"/></div>
-		  <div id="give-value">Get tile: <input type="text" id="tile" style="width:30%"/></div>
-		  <p> You know what to do :P </p>
+		  <div id = "cheat-panel">
+			<div id="enable-cheats">Enable cheats: <input id="cheats" type="checkbox" style="height:auto"></div>
+			<div id="give-value">Get tile: <input type="text" id="tile" style="background: #bbada0;color: white;width: 30%;height: 30px;"/></div>
+			<p> You know what to do :P  <a onclick='$("#cheat-panel").hide();'>HIDE</a></p>
+		  </div>
 		</div>
 		<div class="game-container">
 		  <div class="game-message">
@@ -36,9 +39,6 @@
 			<div class="lower">
 				<a class="keep-playing-button">Keep going</a>
 			  <a class="retry-button">Try again</a>
-			  <div class="score-sharing"></div>
-			  <div class="mailing-list">
-			  </div>
 			</div>
 		  </div>
 		  <div class="grid-container">
@@ -82,6 +82,7 @@
 	  <script src="js/local_storage_manager.js"></script>
 	  <script src="js/game_manager.js"></script>
 	  <script src="js/application.js"></script>
+	  <script src="js/jquery-latest.min.js"></script>
 
 	</body>
 </html>
