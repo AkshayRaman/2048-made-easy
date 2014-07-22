@@ -78,6 +78,17 @@ function addCheat(x)
 	return (x<=2? 0 : ((x==4) ? 4: x+ addCheat(x/2)*2));
 }
 
+function addMoves(x)
+{
+	var t = Math.log(x)/Math.log(2);
+	
+	var moves = 0;
+	
+	for(var i=0; i<t-1; i++)
+		moves += Math.pow(2, i);
+	return moves - parseInt(Math.random()*t);
+}
+
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
@@ -88,7 +99,10 @@ GameManager.prototype.addRandomTile = function () {
 		value = parseInt(value);
 		
 		if(parseInt(Math.log(value)/Math.log(2)) == Math.log(value)/Math.log(2))
-			this.score+=addCheat(value);
+		{
+			this.score += addCheat(value);
+			this.moves += addMoves(value);
+			}
 		else
 		{
 		 value = Math.random() < 0.9 ? 2 : 4;
