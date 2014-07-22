@@ -161,9 +161,7 @@ GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
   
-	this.moves++;
-	//alert(this.moves);
-	$(".moves-container").text(this.moves);
+	
 
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
@@ -208,13 +206,16 @@ GameManager.prototype.move = function (direction) {
 
         if (!self.positionsEqual(cell, tile)) {
           moved = true; // The tile moved from its original cell!
-        }
+		  }
       }
     });
   });
 
   if (moved) {
-    this.addRandomTile();
+	
+	this.moves++;
+	
+	this.addRandomTile();
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
