@@ -4,7 +4,8 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.storageManager = new StorageManager;
   this.actuator       = new Actuator;
 
-  this.startTiles     = 2;
+  this.startTiles = 2;
+  this.moves = 0;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -47,12 +48,14 @@ GameManager.prototype.setup = function () {
     this.over        = previousState.over;
     this.won         = previousState.won;
     this.keepPlaying = previousState.keepPlaying;
+	this.moves 		 = previousState.moves;
   } else {
     this.grid        = new Grid(this.size);
     this.score       = 0;
     this.over        = false;
     this.won         = false;
     this.keepPlaying = false;
+	this.moves       = 0;
 
     // Add the initial tiles
     this.addStartTiles();
@@ -118,7 +121,8 @@ GameManager.prototype.actuate = function () {
     over:       this.over,
     won:        this.won,
     bestScore:  this.storageManager.getBestScore(),
-    terminated: this.isGameTerminated()
+    terminated: this.isGameTerminated(),
+	moves: this.moves
   });
 
 };
@@ -130,7 +134,8 @@ GameManager.prototype.serialize = function () {
     score:       this.score,
     over:        this.over,
     won:         this.won,
-    keepPlaying: this.keepPlaying
+    keepPlaying: this.keepPlaying,
+	moves:       this.moves
   };
 };
 
@@ -155,6 +160,10 @@ GameManager.prototype.moveTile = function (tile, cell) {
 GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
+  
+	this.moves++;
+	//alert(this.moves);
+	$(".moves-container").text(this.moves);
 
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
