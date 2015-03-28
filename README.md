@@ -1,4 +1,4 @@
-2048-with-cheats
+2048-made-easy
 ================
 
 Finding the game 2048 too hard? Not anymore!
